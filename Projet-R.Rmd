@@ -8,5 +8,14 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(here)
+
 tidy_anime <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-23/tidy_anime.csv")
+
+theme_set(theme_light())
+
+data_url <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-23/tidy_anime.csv"
+data_path <- here("content/post/data", "tidy_anime.rds")
+
+tidy_anime_raw <- readr::read_csv(data_url, col_types = cols())
 ```
