@@ -73,6 +73,10 @@ simpsons %>%
 ```{r}
 #3. Combien de lignes de dialogue ont les Guest Stars par épisode ?
 
+library(readr)
+simpsons_dataset <- read_csv("~/dialogue-lines-of-the-simpsons/simpsons_dataset.csv")
+View(simpsons_dataset)
+
 dialogue <- simpsons_dataset %>%
   select(role = raw_character_text, line = spoken_words)
 
