@@ -9,19 +9,18 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Simpsons Guest Stars
+# Simpsons Guest Stars
 
-#Descripion des données :
+# Descripion des données :
 
 ```{r}
-#season : saison de la série
-#number : numéro d'épisode
-#production_code : code de production pour l'épisode
-#episode_title : titre de l'épisode
-#guest_star : invté vedette (nom actuel)
-#role : rôle dans la série (soit un personnage ou soi-même)
+# season : saison de la série
+# number : numéro d'épisode
+# production_code : code de production pour l'épisode
+# episode_title : titre de l'épisode
+# guest_star : invté vedette (nom actuel)
+# role : rôle dans la série (soit un personnage ou soi-même)
 ```
-
 
 ```{r}
 library(tidyverse)
@@ -32,9 +31,8 @@ simpsons <- readr::read_delim("https://raw.githubusercontent.com/rfordatascience
          season = parse_number(season))
 ```
 
+# Quel invité vedette s'est joué lui-même dans plusieurs épisodes des Simpson ?
 ```{r}
-#1. Quel invité vedette s'est joué lui-même dans plusieurs épisodes des Simpson ?
-
 simpsons %>% 
   filter(self) %>% 
   count(guest_star, sort = TRUE) %>% 
@@ -46,14 +44,13 @@ simpsons %>%
 ```
 
 ```{r}
-#Nous pouvons constater que c'est Stephen Hawking qui détient le record avec 4 épisodes dans son propre rôle.
-#Suivi de près par Stan Lee, Ken Burns et Gary Coleman avec 3 épisodes dans leur propre rôle.
-#Ainsi qu'une majorité de Guest Stars s'étant joués eux-mêmes à 2 reprises dans la série.
+# Nous pouvons constater que c'est Stephen Hawking qui détient le record avec 4 épisodes dans son propre rôle.
+# Suivi de près par Stan Lee, Ken Burns et Gary Coleman avec 3 épisodes dans leur propre rôle.
+# Ainsi qu'une majorité de Guest Stars s'étant joués eux-mêmes à 2 reprises dans la série.
 ```
 
+# Quels rôles les Guest Stars ont joué en fonction des saisons ?
 ```{r}
-#2. Quels rôles les Guest Stars ont joué en fonction des saisons ?
-
 simpsons %>% 
   separate_rows(role, sep = ";\\s+") %>% 
   add_count(role) %>% 
@@ -66,15 +63,14 @@ simpsons %>%
 ```
 
 ```{r}
-#La première chose qui saute aux yeux c'est que les Guest Stars ont en majorité joué leur propre rôle un grand nombre de fois durant l'entièreté de la série.
-#Suivi de près par Edna Krabappel qui a été joué durant de nombreuses saisons par Marcia Wallace.
-#On constate également une écransante majorité de Guest Stars hommes dans leur propre rôle par rapport aux femmes et aux groupes dans leur propre rôle.
-#Le reste des rôles attribués à un invité vedette sont pour le coup très occasionnels durant la série.
+# La première chose qui saute aux yeux c'est que les Guest Stars ont en majorité joué leur propre rôle un grand nombre de fois durant l'entièreté de la série.
+# Suivi de près par Edna Krabappel qui a été joué durant de nombreuses saisons par Marcia Wallace.
+# On constate également une écransante majorité de Guest Stars hommes dans leur propre rôle par rapport aux femmes et aux groupes dans leur propre rôle.
+# Le reste des rôles attribués à un invité vedette sont pour le coup très occasionnels durant la série.
 ```
 
+# Combien de lignes de dialogue ont les Guest Stars par épisode ?
 ```{r}
-#3. Combien de lignes de dialogue ont les Guest Stars par épisode ?
-
 library(readr)
 simpsons_dataset <- read_csv("~/dialogue-lines-of-the-simpsons/simpsons_dataset.csv")
 View(simpsons_dataset)
@@ -118,6 +114,6 @@ guest_roles %>%
 ```
 
 ```{r}
-#Nous pouvons déjà souligner que les Guest Stars ont dans les deux cas peu de lignes de dialogue par épisode (moins de 25 en moyenne).
-#Mais le plus frappant reste ceux qui s'incarnent eux-mêmes dépassant à peine les 15 (environ) en moyenne.
+# Nous pouvons déjà souligner que les Guest Stars ont dans les deux cas peu de lignes de dialogue par épisode (moins de 25 en moyenne).
+# Mais le plus frappant reste ceux qui s'incarnent eux-mêmes dépassant à peine les 15 (environ) en moyenne.
 ```
