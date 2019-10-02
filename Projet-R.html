@@ -370,6 +370,14 @@ summary {
 </div>
 
 
+<p>#Simpsons Guest Stars</p>
+<p>#Descripion des données :</p>
+<pre class="r"><code>#season : saison de la série
+#number : numéro d&#39;épisode
+#production_code : code de production pour l&#39;épisode
+#episode_title : titre de l&#39;épisode
+#guest_star : invté vedette (nom actuel)
+#role : rôle dans la série (soit un personnage ou soi-même)</code></pre>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## -- Attaching packages ------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
 <pre><code>## v ggplot2 3.2.1     v purrr   0.3.2
@@ -380,17 +388,6 @@ summary {
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>theme_set(theme_light())
-
-#Simpsons Guest Stars
-
-#Descripion des données
-
-#season : saison de la série
-#number : numéro d&#39;épisode
-#production_code : code de production pour l&#39;épisode
-#episode_title : titre de l&#39;épisode
-#guest_star : invté vedette (nom actuel)
-#role : rôle dans la série (soit un personnage ou soi-même)
 
 simpsons &lt;- readr::read_delim(&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-27/simpsons-guests.csv&quot;, delim = &quot;|&quot;, quote = &quot;&quot;) %&gt;% 
   mutate(self = str_detect(role, &quot;self|selves&quot;),
@@ -443,7 +440,7 @@ simpsons %&gt;%
 <pre class="r"><code>#La première chose qui saute aux yeux c&#39;est que les Guest Stars ont en majorité joué leur propre rôle un grand nombre de fois durant l&#39;entièreté de la série.
 #Suivi de près par Edna Krabappel qui a été joué durant de nombreuses saisons par Marcia Wallace.
 #On constate également une écransante majorité de Guest Stars hommes dans leur propre rôle par rapport aux femmes et aux groupes dans leur propre rôle.
-# Le reste des rôles attribués à un invité vedette sont pour le coup très occasionnels durant la série.</code></pre>
+#Le reste des rôles attribués à un invité vedette sont pour le coup très occasionnels durant la série.</code></pre>
 <pre class="r"><code>#3. Combien de lignes de dialogue ont les Guest Stars par épisode ?
 
 library(readr)

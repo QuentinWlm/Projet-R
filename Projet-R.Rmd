@@ -9,20 +9,23 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-library(tidyverse)
-theme_set(theme_light())
-
 #Simpsons Guest Stars
 
-#Descripion des données
+#Descripion des données :
 
+```{r}
 #season : saison de la série
 #number : numéro d'épisode
 #production_code : code de production pour l'épisode
 #episode_title : titre de l'épisode
 #guest_star : invté vedette (nom actuel)
 #role : rôle dans la série (soit un personnage ou soi-même)
+```
+
+
+```{r}
+library(tidyverse)
+theme_set(theme_light())
 
 simpsons <- readr::read_delim("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-27/simpsons-guests.csv", delim = "|", quote = "") %>% 
   mutate(self = str_detect(role, "self|selves"),
@@ -48,7 +51,6 @@ simpsons %>%
 #Ainsi qu'une majorité de Guest Stars s'étant joués eux-mêmes à 2 reprises dans la série.
 ```
 
-
 ```{r}
 #2. Quels rôles les Guest Stars ont joué en fonction des saisons ?
 
@@ -67,7 +69,7 @@ simpsons %>%
 #La première chose qui saute aux yeux c'est que les Guest Stars ont en majorité joué leur propre rôle un grand nombre de fois durant l'entièreté de la série.
 #Suivi de près par Edna Krabappel qui a été joué durant de nombreuses saisons par Marcia Wallace.
 #On constate également une écransante majorité de Guest Stars hommes dans leur propre rôle par rapport aux femmes et aux groupes dans leur propre rôle.
-# Le reste des rôles attribués à un invité vedette sont pour le coup très occasionnels durant la série.
+#Le reste des rôles attribués à un invité vedette sont pour le coup très occasionnels durant la série.
 ```
 
 ```{r}
@@ -119,4 +121,3 @@ guest_roles %>%
 #Nous pouvons déjà souligner que les Guest Stars ont dans les deux cas peu de lignes de dialogue par épisode (moins de 25 en moyenne).
 #Mais le plus frappant reste ceux qui s'incarnent eux-mêmes dépassant à peine les 15 (environ) en moyenne.
 ```
-
